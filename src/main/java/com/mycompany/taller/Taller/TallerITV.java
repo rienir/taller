@@ -9,20 +9,13 @@ package com.mycompany.taller.Taller;
  *
  * @author ciclost
  */
-public class Mecanico {
-   
+public class TallerITV {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
     
-     public Mecanico(){
 }
-public boolean darVistobueno(){
-    return true;
-}
-public boolean darNegativa(){// en caso que no pase por algún motivo
-    return false;
-}
-
-
-}
-   
-
-

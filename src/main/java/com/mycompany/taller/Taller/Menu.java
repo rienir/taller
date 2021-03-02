@@ -9,20 +9,16 @@ package com.mycompany.taller.Taller;
  *
  * @author ciclost
  */
-public class Mecanico {
-   
+public class Menu {
+     private  Cola colaTotal= new Cola();// para poner coches en cola 
+     private Box[] boxes =new Box[5];
     
-     public Mecanico(){
+   public Menu(){
+       
+        
 }
-public boolean darVistobueno(){
-    return true;
+   private void Mostrar(){
+       
+   }
 }
-public boolean darNegativa(){// en caso que no pase por algún motivo
-    return false;
-}
-
-
-}
-   
-
 
