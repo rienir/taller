@@ -5,36 +5,47 @@
  */
 package com.mycompany.taller.Taller;
 
+import a72.util.GestorIO;
+
 /**
  *
  * @author ciclost
  */
 public class Cola {
-     private static Vehiculo[] cola= new Vehiculo[14];// puede haber 15 en cola
+     private Vehiculo[] cola;// puede haber 15 en cola
+private GestorIO io;
     public Cola(){
-
+         cola=new Vehiculo[14];
+        io= new GestorIO();
 }
 public void ponerEncola(Vehiculo vehiculo){
    
     for(int i=0; i<cola.length;i++){
         if(cola[i]==null){
             cola[i]= new Vehiculo(vehiculo);
+            io.out("Se ha introducido el coche en la posicion de la cola "+(i+1));//+1 pq i empieza de zero
                 break;// para ponerlo en cola  y salir 
                 
         }
+        
     }
 }
-public void sacarVehiculo(Vehiculo vehiculo){
-    if(cola[0]==vehiculo){
+public Vehiculo sacarVehiculo(){
+    if(cola[0]!=null){
+        Vehiculo aux= new Vehiculo(cola[0]);
             cola[0]= null;// para ponerlo en cola 
-            Cola.reorganizar();
+           this.reorganizar();
+            io.out("Se ha sacado el vehículo y se ha reorganizado la cola");
+            return aux;
     }
-    else System.out.println("Error");//mostrar fallo pq no hay vehiculos 
+    else io.out("Error no hay vehículos en la cola ");
+                    return null;//mostrar fallo pq no hay vehiculos 
 }
-public static void reorganizar(){// poner todos 
-  for(int i=0; i<cola.length;i++)
+public  void reorganizar(){// poner todos 
+  for(int i=0; i<this.cola.length;i++)
       if(cola[i]!=null){//cuando hay vehiculos 
- cola[i-1]=cola[i]; // para poner todos los vehiculos en una posición menos 
+ cola[i-1]=new Vehiculo(cola[i]);
+     cola[i]=null; // para poner todos los vehiculos en una posición menos 
       }
       
   

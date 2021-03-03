@@ -5,19 +5,50 @@
  */
 package com.mycompany.taller.Taller;
 
+import a72.util.GestorIO;
+
 /**
  *
  * @author ciclost
  */
 public class Menu {
-     private  Cola colaTotal= new Cola();// para poner coches en cola 
-     private Box[] boxes =new Box[5];
-    
+     private Taller t1;
+     private GestorIO io; 
    public Menu(){
-       
-        
+     t1 =new Taller();
+     io= new GestorIO();
 }
    private void Mostrar(){
+       int eleccion;
+       do{
+           io.out("1.Alta y recepción de vehículos \n 2.Reclamar vehículo para entrar en box\n 3.Mover todos los vehículos de fase dentro de un box.\n 4.Información del estado de un box concreto\n  5.Información general de todos los boxes\n  6.Salir del programa.");
+       eleccion=io.inInt();
+       
+       }while(eleccion<=6 && eleccion>=1);
+       if(eleccion==1){
+           
+       }
+       else if(eleccion==2){
+           
+       }
+       else if(eleccion==3){
+           
+       }
+       else if(eleccion==4){
+           
+       }
+       else if(eleccion==5){
+           
+       }
+       else if(eleccion==6){
+           io.out("El programa ha acabado");
+       }
+       
+       
+       
+       
+       
+       
        
    }
 }
