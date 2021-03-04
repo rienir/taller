@@ -18,7 +18,9 @@ public class Vehiculo {// hacer una comprobación para que la matrícula no se r
         private tipoVehiculo tipo;
         private String matricula;
         private static  final String PATRON="\\d{4}[A-Z]{3}";
-         private GestorIO io= new GestorIO();
+         private static GestorIO io= new GestorIO();
+         private String modelo;
+         private String marca;
         
          
     public Vehiculo(tipoVehiculo tipo, String matricula) {
@@ -26,7 +28,47 @@ public class Vehiculo {// hacer una comprobación para que la matrícula no se r
        
        this.matricula= matricula;
        this.tipo = tipo;
+       this.modelo=null;
+      this.marca=null;
+    }
+    public Vehiculo(tipoVehiculo tipo, String matricula,String modelo) {
+        assert  Pattern.matches(matricula, PATRON);
+       
+       this.matricula= matricula;
+       this.tipo = tipo;
+       this.modelo=modelo;
+      this.marca=null;
+    }
+      public Vehiculo(tipoVehiculo tipo, String matricula,String modelo, String marca) {
+        assert  Pattern.matches(matricula, PATRON);
+       
+       this.matricula= matricula;
+       this.tipo = tipo;
+       this.modelo=modelo;
+      this.marca=marca;
+    }
+     
+        
+       
+          
+     
+          
       
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
     
 
@@ -50,9 +92,18 @@ public class Vehiculo {// hacer una comprobación para que la matrícula no se r
         this.tipo=vehiculo.tipo;
     }
     public String toString(){
-        return("El vehiculo que tiene la matricula"+this.matricula+"y es de tipo"+this.tipo);
-        
-        
-}
+        String aux;
+        if(this.marca.equalsIgnoreCase("null")){
+        aux= "El vehiculo que tiene la matricula "+this.matricula+", es de tipo"+this.tipo+ "y el modelo es"+this.modelo;
+        }
+        else if(this.modelo.equalsIgnoreCase("null")){
+        aux="El vehiculo que tiene la matricula "+this.matricula+", es de tipo"+this.tipo;
+        }
+        else{
+        aux="El vehiculo que tiene la matricula "+this.matricula+" , es de tipo"+this.tipo+", el modelo es: "+this.modelo+"y la marca es:"+this.marca;
+        }
+        return aux;
+    }
+    
     
 }

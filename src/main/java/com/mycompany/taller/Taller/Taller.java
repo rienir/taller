@@ -7,6 +7,7 @@ package com.mycompany.taller.Taller;
 
 import a72.util.GestorIO;
 import com.mycompany.taller.Taller.enums.tipoVehiculo;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -16,12 +17,30 @@ public class Taller {
      private  Cola colaTotal;// para poner coches en cola 
      private Box[] boxes; 
       private GestorIO io;   
-         
-         public Taller(){
+      public Taller(){
            colaTotal  = new Cola();
              boxes =new Box[5];
+             for(int i=0; i<boxes.length;i++){
+                 boxes[i]= new Box();
+             }
             io = new GestorIO();
          }
+
+    public Cola getColaTotal() {
+        return colaTotal;
+    }
+
+    public void setColaTotal(Cola colaTotal) {
+        this.colaTotal = colaTotal;
+    }
+
+  
+
+    public void setBoxes(Box[] boxes) {
+        this.boxes = boxes;
+    }
+         
+         
     public void estadoBox(){
       
     boxes[this.BoxElegido()-1].EstadoBox();// para mostrar el estado de box que nos piden 
@@ -30,36 +49,56 @@ public class Taller {
       for(int i= 0; i<boxes.length ;i++){
     boxes[i].EstadoBox();// para mostrar el estado de todos los boxes;
 }
+     
     
       
 }
+
+
+ public void aumentarFaseEnBoxElegido(int box){
+         boxes[box].aumentarFase();
+ }
     public int  BoxElegido(){
      int numeroBox;
     do{
         io.out("Dime el Box del cuál quieres saber el estado: (1-6)");
-     numeroBox= io.inInt();
+             numeroBox= io.inInt();
      if (numeroBox>=1 && numeroBox<=6){
          io.out("Introduce un número correcto ");
      }
     }while(numeroBox>=1 && numeroBox<=6);
     return numeroBox;
 } 
+    
+    
+    
+    
 public void altaVehiculo(){
-    String tipo;
-   do {
-       io.out("Introduce el tipo de tu vehiculo");
-       tipo=io.inString();
-   }while(tipo.equalsIgnoreCase("Coche")!= true || tipo.equalsIgnoreCase("Microbus")!=true||  tipo.equalsIgnoreCase("Furgoneta")!=true || tipo.equalsIgnoreCase("Camión"));
-   tipoVehiculo t2= new tipoVehiculo(tipo);
-        io.out("Introduce la matricula de tu vehiculo");
-        String matricula=io.inString();
-     Vehiculo c1= new Vehiculo(t2,matricula); 
-     colaTotal.ponerEncola(c1);
-   
- 
+    
+    final String PATRON="\\d{4}[A-Z]{3}";
+      tipoVehiculo t2= null;
+        Vehiculo c1=null;
       
-   }
-public void reclamarVehiculoBox(){
+   do { io.out("Introduce el tipo de tu vehiculo\n");
+      String tipo=io.inString();
+   }while(tipo.equalsIgnoreCase(tipoVehiculo.coche.ToString())!= true || tipo.equalsIgnoreCase(tipoVehiculo.camion.ToString())!=true||  tipo.equalsIgnoreCase(tipoVehiculo.furgoneta.ToString())!=true || tipo.equalsIgnoreCase(tipoVehiculo.microbus.ToString()));
+      
+        t2 = tipoVehiculo.valueOf(tipo);
+       do{
+           io.out("Introduce la matricula de tu vehiculo\n");
+            String matricula=io.inString();
+        c1.setMatricula(matricula);
+        c1.setTipo(t2);
+        
+       } while( !Pattern.matches(matricula, PATRON) && colaTotal.compararMatricula(c1, colaTotal.primerEspacioLibre()));
+       
+       
+        colaTotal.ponerEncola(c1);
+       //Comparar la matricula
+       
+        }
+            
+          public void reclamarVehiculoBox(){
                 boolean vehiculoReclamado= false;
             for(int i=0; i<boxes.length;i++ ){
                 if(boxes[i].hayLibre()== true){
@@ -75,4 +114,22 @@ public void reclamarVehiculoBox(){
    
 }    
     
+       
+       
+         
+           
+      
+  
+           
+       
+        
+        
+       
+       
+       
+       
+ 
+      
+   
+
 

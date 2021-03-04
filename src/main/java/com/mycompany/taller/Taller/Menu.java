@@ -18,31 +18,42 @@ public class Menu {
      t1 =new Taller();
      io= new GestorIO();
 }
-   private void Mostrar(){
+  public void Mostrar(){
        int eleccion;
        do{
-           io.out("1.Alta y recepción de vehículos \n 2.Reclamar vehículo para entrar en box\n 3.Mover todos los vehículos de fase dentro de un box.\n 4.Información del estado de un box concreto\n  5.Información general de todos los boxes\n  6.Salir del programa.");
-       eleccion=io.inInt();
-       
-       }while(eleccion<=6 && eleccion>=1);
-       if(eleccion==1){
-           
+           io.out("1.Alta y recepción de vehículos \n 2.Reclamar vehículo para entrar en box\n 3.Mover todos los vehículos de fase dentro de un box.\n 4.Información del estado de un box concreto\n  5.Información general de todos los boxes\n  6.Salir del programa.\n");
+      
+           eleccion=io.inInt();
+            
+           if(eleccion==1){
+           t1.altaVehiculo();
        }
        else if(eleccion==2){
-           
+           t1.reclamarVehiculoBox();
        }
        else if(eleccion==3){
+       
+       t1.aumentarFaseEnBoxElegido(t1.BoxElegido());
            
        }
        else if(eleccion==4){
-           
+           t1.estadoBox();
+    
        }
        else if(eleccion==5){
-           
+          t1.estadoBoxes();
+                  
+          
        }
        else if(eleccion==6){
            io.out("El programa ha acabado");
        }
+       else{
+           io.out("Numero no Valido\n");
+       }
+       
+       }while(eleccion!=6);// pues si pone 6 el programa se acaba 
+      
        
        
        
@@ -51,5 +62,6 @@ public class Menu {
        
        
    }
+
 }
 

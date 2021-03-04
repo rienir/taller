@@ -30,6 +30,26 @@ public void ponerEncola(Vehiculo vehiculo){
         
     }
 }
+public boolean compararMatricula(Vehiculo c1, int espacioLibre){
+    boolean matriculaUnica= true;
+     for(int i=0; i<espacioLibre;i++){
+         if(cola[i].getMatricula().equalsIgnoreCase(c1.getMatricula())){
+             matriculaUnica=false;
+         }
+     }
+    return matriculaUnica;
+}
+
+public int primerEspacioLibre(){
+    int espacioLibre=-1;
+     for(int i=0; i<cola.length;i++){
+        if(cola[i]==null){
+           espacioLibre= i;
+           break;
+        } }
+     return espacioLibre;
+
+}
 public Vehiculo sacarVehiculo(){
     if(cola[0]!=null){
         Vehiculo aux= new Vehiculo(cola[0]);
