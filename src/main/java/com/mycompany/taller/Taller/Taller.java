@@ -41,13 +41,14 @@ public class Taller {
     }
          
          
-    public void estadoBox(){
+    public void estadoBox(int box ){
       
-    boxes[this.BoxElegido()-1].EstadoBox();// para mostrar el estado de box que nos piden 
+    boxes[box-1].EstadoBox();// para mostrar el estado de box que nos piden 
       
 }  public void estadoBoxes(){
       for(int i= 0; i<boxes.length ;i++){
-    boxes[i].EstadoBox();// para mostrar el estado de todos los boxes;
+            System.out.print(" En el Box: "+(i+1));
+          boxes[i].EstadoBox();// para mostrar el estado de todos los boxes;
 }
      
     
@@ -63,10 +64,10 @@ public class Taller {
     do{
         io.out("Dime el Box del cuál quieres saber el estado: (1-6)");
              numeroBox= io.inInt();
-     if (numeroBox>=1 && numeroBox<=6){
+     if (numeroBox>6 && numeroBox<1){
          io.out("Introduce un número correcto ");
      }
-    }while(numeroBox>=1 && numeroBox<=6);
+    }while(numeroBox>6 && numeroBox<1);
     return numeroBox;
 } 
     
@@ -78,19 +79,19 @@ public void altaVehiculo(){
     final String PATRON="\\d{4}[A-Z]{3}";
       tipoVehiculo t2= null;
         Vehiculo c1=null;
-      
+       String tipo;
    do { io.out("Introduce el tipo de tu vehiculo\n");
-      String tipo=io.inString();
-   }while(tipo.equalsIgnoreCase(tipoVehiculo.coche.ToString())!= true || tipo.equalsIgnoreCase(tipoVehiculo.camion.ToString())!=true||  tipo.equalsIgnoreCase(tipoVehiculo.furgoneta.ToString())!=true || tipo.equalsIgnoreCase(tipoVehiculo.microbus.ToString()));
+       tipo=io.inString();
+   }while(tipo.equalsIgnoreCase("coche")!= true || tipo.equalsIgnoreCase("camion")!=true||  tipo.equalsIgnoreCase("furgoneta")!=true || tipo.equalsIgnoreCase("microbus")!=true );
       
-        t2 = tipoVehiculo.valueOf(tipo);
+        t2.setTipo(tipo);
        do{
            io.out("Introduce la matricula de tu vehiculo\n");
             String matricula=io.inString();
         c1.setMatricula(matricula);
         c1.setTipo(t2);
         
-       } while( !Pattern.matches(matricula, PATRON) && colaTotal.compararMatricula(c1, colaTotal.primerEspacioLibre()));
+       } while( !Pattern.matches(c1.getMatricula(), PATRON) && colaTotal.compararMatricula(c1, colaTotal.primerEspacioLibre()));
        
        
         colaTotal.ponerEncola(c1);

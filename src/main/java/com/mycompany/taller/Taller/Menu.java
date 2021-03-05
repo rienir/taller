@@ -25,20 +25,21 @@ public class Menu {
       
            eleccion=io.inInt();
             
-           if(eleccion==1){
+       if(eleccion==1){
            t1.altaVehiculo();
        }
        else if(eleccion==2){
            t1.reclamarVehiculoBox();
        }
        else if(eleccion==3){
-       
-       t1.aumentarFaseEnBoxElegido(t1.BoxElegido());
-           
+       int box= t1.BoxElegido();
+       t1.aumentarFaseEnBoxElegido(box);
+           box=0;
        }
        else if(eleccion==4){
-           t1.estadoBox();
-    
+            int box= t1.BoxElegido();
+           t1.estadoBox(box);
+           box=0;
        }
        else if(eleccion==5){
           t1.estadoBoxes();
@@ -52,7 +53,7 @@ public class Menu {
            io.out("Numero no Valido\n");
        }
        
-       }while(eleccion!=6);// pues si pone 6 el programa se acaba 
+       }while(eleccion>=1 && eleccion<=5 );// pues si pone 6 el programa se acaba 
       
        
        

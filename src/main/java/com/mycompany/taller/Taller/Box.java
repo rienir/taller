@@ -56,8 +56,8 @@ public class Box {
 public void EstadoBox(){
                 for(int i=0; i<linea.length;i++){
                     if(linea[i]!=null){
-                        io.out("La línea "+(i+1)+"esta  "+linea[i+1]);//debe imprimir el vehículo
-                    }else io.out("La línea "+(i+1)+"esta vacía ");
+                        io.out(" La línea "+(i+1)+" esta  "+linea[i+1]);//debe imprimir el vehículo
+                    }else io.out(" La línea "+(i+1)+" esta vacía  ");
                 
                 }
 

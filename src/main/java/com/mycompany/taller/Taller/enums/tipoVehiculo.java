@@ -21,5 +21,9 @@ public enum tipoVehiculo {
        public String ToString(){
            return this.tipo;
        }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
          
 }
